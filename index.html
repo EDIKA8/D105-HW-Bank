@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Bank Accounts</title>
+</head>
+<body>
+    <h1>Bank Accounts</h1>
+    <ul id="accounts-list">
+    </ul>
+    <a href="create.html">Create New Account</a>
+    <a href="transfer.html">Transfer Funds</a>
+
+    <script>
+        fetch('accounts')
+            .then(response => response.json())
+            .then(data => {
+                const accountsList = document.getElementById('accounts-list');
+                data.forEach(account => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `ID: ${account.id}, Name: ${account.name}, Balance: $${account.balance}`;
+                    accountsList.appendChild(listItem);
+                });
+            });
+    </script>
+</body>
+</html>
